@@ -4,6 +4,9 @@
 	"version": "v0.1.0",
 	"id": "suntle.betterendscreen",
 	"name": "BetterEndscreen",
-	"developer": "Suntle",
+	"developers": [
+		"Suntle", 
+		"Viper"
+	],
 	"description": "Womp Womp"
 }

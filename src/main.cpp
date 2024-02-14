@@ -11,9 +11,9 @@ class $modify(EndLevelLayer){
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		// add yo ui stuff here
-		
+		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0));
 		auto label = CCLabelBMFont::create("Hello End Screen", "bigFont.fnt");
         label->setPosition(100, 100);
-        this->addChild(label);
+        WinLayer->addChild(label);
 	}
 };

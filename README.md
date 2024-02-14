@@ -1,3 +1,3 @@
 # BetterEndscreen
 
-This is where she makes a mod.
+The banger
