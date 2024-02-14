@@ -21,6 +21,7 @@ class $modify(EndLevelLayer){
 		auto SS = CCLabelBMFont::create("_", "bigFont.fnt");
         SS->setPosition(winSize.width, winSize.height);
 		SS->setID("Window Helper");
+		SS->setVisible(false);
         WinLayer->addChild(SS);
 	}
 };
