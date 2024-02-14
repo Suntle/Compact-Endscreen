@@ -1,36 +1,19 @@
 /**
- * Include the Geode headers.
- */
+	Including the headers.
+*/
 #include <Geode/Geode.hpp>
-/**
- * Required to modify the MenuLayer class
- */
-#include <Geode/modify/MenuLayer.hpp>
-
-/**
- * Brings cocos2d and all Geode namespaces 
- * to the current scope.
- */
+#include <Geode/modify/EndLevelLayer.hpp>
 using namespace geode::prelude;
-
 /**
- * `$modify` lets you extend and modify GD's 
- * classes; to hook a function in Geode, 
- * simply $modify the class and write a new 
- * function definition with the signature of 
- * the one you want to hook.
- */
-class $modify(MenuLayer) {
-	/**
-	 * MenuLayer::onMoreGames is a GD function, 
-	 * so we hook it by simply writing its name 
-	 * inside a $modified MenuLayer class.
-	 * 
-	 * Note that for all hooks, your signature 
-	 * has to match exactly - `bool onMoreGames` 
-	 * would not place a hook!
-	 */
-	void onMoreGames(CCObject*) {
-		FLAlertLayer::create("Geode", "Hello from my custom mod!", "OK")->show(); 
-	} 
+	Hooks to the EndLevel Layer
+*/
+class $modify(EndLevelLayer){
+	void customSetup() {
+		EndLevelLayer::customSetup();
+		// add yo ui stuff here
+		
+		auto label = CCLabelBMFont::create("Hello End Screen", "bigFont.fnt");
+        label->setPosition(100, 100);
+        this->addChild(label);
+	}
 };
