@@ -45,7 +45,7 @@ class $modify(endLayer,EndLevelLayer){
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
-		endLayer::SetupIDS(WinLayer)
+		endLayer::SetupIDS(WinLayer);
 		// add yo ui stuff here
 		auto winSize = CCDirector::get()->getWinSize(); // screen size
 		
