@@ -66,10 +66,10 @@ for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
         }
     }
 	auto CCMenu_0 = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(0)); // Index Number 0
-		CCMenu_0->setID("CCMenu_0")
+		CCMenu_0->setID("CCMenu_0");
 	
 	auto CCMenu_1 = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(1)); // Index Number 1
-		CCMenu_1->setID("CCMenu_1")
+		CCMenu_1->setID("CCMenu_1");
 	}
 	void customSetup() {
 		EndLevelLayer::customSetup();
