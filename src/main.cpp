@@ -37,7 +37,7 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 }
 // This just Makes it so you can get the texture by Sprite and stuff
 class $modify(endLayer,EndLevelLayer){
-	void SetupIDS(WinLayer) {
+	void SetupIDS(CCLayer* WinLayer) {
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("Level Complete");
     		}
