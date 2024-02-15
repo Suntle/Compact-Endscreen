@@ -11,6 +11,7 @@ using namespace geode::prelude;
 /*
 Geode Hasn't got some Important Ui Stuff
 */
+// This just Makes it so you can get the texture by Sprite and stuff
 CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
     auto cache = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
     if (!cache) return nullptr;
@@ -35,10 +36,10 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
     }
     return nullptr;
 }
-// This just Makes it so you can get the texture by Sprite and stuff
+
 class $modify(endLayer,EndLevelLayer){
-	void SetupIDS(CCLayer* WinLayer) {
-	WinLayer->setID("End-Level-UI")
+	void SetupIDS(CCLayer* WinLayer) { // this functions setups names
+	WinLayer->setID("End-Level-UI");
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("Level Complete");
     		}
