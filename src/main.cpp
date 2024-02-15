@@ -13,6 +13,8 @@ class $modify(EndLevelLayer){
 		// add yo ui stuff here
 		auto winSize = CCDirector::get()->getWinSize(); // screen size
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
+		auto GiveID = static_cast<cocos2d::CCSprite*>(WinLayer->getChildren()->objectAtIndex(11));
+		GiveID->setID("Level_Complete")
 		auto label = CCLabelBMFont::create("i am a text text", "bigFont.fnt");
 		label->setScale(0.5);
         label->setPosition(winSize.width-286, winSize.height-244);
