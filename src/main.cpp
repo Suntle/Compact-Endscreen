@@ -37,17 +37,17 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 }
 // This just Makes it so you can get the texture by Sprite and stuff
 class $modify(endLayer,EndLevelLayer){
-	void SetupIDS() {
+	void SetupIDS(WinLayer) {
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("Level Complete");
     		}
 	}
 	void customSetup() {
 		EndLevelLayer::customSetup();
-		endLayer::SetupIDS()
+		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
+		endLayer::SetupIDS(WinLayer)
 		// add yo ui stuff here
 		auto winSize = CCDirector::get()->getWinSize(); // screen size
-		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
 		
 		auto label = CCLabelBMFont::create("i am a text text", "bigFont.fnt");
 		label->setScale(0.5);
