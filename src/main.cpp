@@ -41,6 +41,35 @@ class $modify(endLayer,EndLevelLayer){
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("Level Complete");
     		}
+	 for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
+        if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
+            if(std::string_view(bmFont->getString()).starts_with("Time:") && bmFont->getID().empty()) {
+                bmFont->setID("Time-label");
+                break;
+            }
+        }
+    }
+for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
+        if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
+            if(std::string_view(bmFont->getString()).starts_with("Jumps:") && bmFont->getID().empty()) {
+                bmFont->setID("Jump-label");
+                break;
+            }
+        }
+    }
+for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
+        if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
+            if(std::string_view(bmFont->getString()).starts_with("Attempts:") && bmFont->getID().empty()) {
+                bmFont->setID("Attempts-label");
+                break;
+            }
+        }
+    }
+	auto Index = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(0)); // Index Number 0
+		Index->setID("CCMenu_0")
+	}
+	auto Index = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(1)); // Index Number 1
+		Index->setID("CCMenu_1")
 	}
 	void customSetup() {
 		EndLevelLayer::customSetup();
