@@ -1,3 +1,3 @@
-# BetterEndscreen
+# Compact Endscreen
 
 The banger
