@@ -38,12 +38,13 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 // This just Makes it so you can get the texture by Sprite and stuff
 class $modify(endLayer,EndLevelLayer){
 	void SetupIDS(CCLayer* WinLayer) {
+	WinLayer->setID("End-Level-UI")
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("Level Complete");
     		}
 	 for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
-            if(std::string_view(bmFont->getString()).starts_with("Time:") && bmFont->getID().empty()) {
+            if(std::string_view(bmFont->getString()).starts_with("Time:")) {
                 bmFont->setID("Time-label");
                 break;
             }
@@ -51,7 +52,7 @@ class $modify(endLayer,EndLevelLayer){
     }
 for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
-            if(std::string_view(bmFont->getString()).starts_with("Jumps:") && bmFont->getID().empty()) {
+            if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
                 bmFont->setID("Jump-label");
                 break;
             }
@@ -59,18 +60,18 @@ for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
     }
 for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
-            if(std::string_view(bmFont->getString()).starts_with("Attempts:") && bmFont->getID().empty()) {
+            if(std::string_view(bmFont->getString()).starts_with("Attempts:")) {
                 bmFont->setID("Attempts-label");
                 break;
             }
         }
     }
-	auto CCMenu_0 = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(0)); // Index Number 0
-		CCMenu_0->setID("CCMenu_0");
 	
-	auto CCMenu_1 = static_cast<cocos2d::CCMenu*>(WinLayer->getChildren()->objectAtIndex(1)); // Index Number 1
-		CCMenu_1->setID("CCMenu_1");
-	}
+    if (auto CCMENU0 = getChildOfType<CCMenu>(WinLayer, 0)) {
+        CCMENU0->setID("_CCMENU0");
+    }
+
+}
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
