@@ -1,12 +1,16 @@
 {
 	"geode": "2.0.0-beta.19",
-	"gd": "2.204",
+	"gd": {
+		"win": "2.204",
+		"android": "2.205",
+		"mac": "2.200"
+	},
 	"version": "v0.1.0",
-	"id": "suntle.betterendscreen",
-	"name": "BetterEndscreen",
+	"id": "suntle.compactendscreen",
+	"name": "Compact Endscreen",
 	"developers": [
-		"Suntle", 
+		"Suntle", 	
 		"Viper"
 	],
-	"description": "Womp Womp"
+	"description": "hello there mate could i perhaps offer you a cup of tea? made with love, it would taste very lovely for ya"
 }
