@@ -45,6 +45,8 @@ class $modify(endLayer,EndLevelLayer){
     		}
 	 for(auto child : CCArrayExt<CCNode*>(this->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
+			log::info(std::string_view(bmFont->getString()).starts_with("Time:"));
+			log::info(std::string_view(bmFont->getString()).starts_with("Time:"))
             if(std::string_view(bmFont->getString()).starts_with("Time:")) {
                 bmFont->setID("Time-label");
                 break;
