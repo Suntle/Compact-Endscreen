@@ -125,6 +125,6 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		SS->setVisible(false);
         WinLayer->addChild(SS);
 
-		WinLayer->setPosition(winSize.width-number, winSize.height)
+		//WinLayer->setPosition(winSize.width-number, winSize.height)
 	}
 };
