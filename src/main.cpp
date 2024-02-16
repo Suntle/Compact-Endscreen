@@ -161,6 +161,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			WinLayer->getChildByID("Chain_Left")->setVisible(false);
 			if (!DONOTCRASH) {
 				WinLayer->getChildByID("Level-Complete")->setVisible(false);
+			}
 			else {
 				WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
 			};	
