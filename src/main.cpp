@@ -109,7 +109,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         gdlist->setID("Background_Textures");
     }
-
+}
 
 	void customSetup() {
 		EndLevelLayer::customSetup();
@@ -217,5 +217,6 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 				//WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
 			};	
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
+	}
 	}
 };
