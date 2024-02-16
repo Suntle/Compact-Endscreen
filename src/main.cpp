@@ -112,7 +112,8 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		endLayer::SetupIDS(WinLayer);
 		// add yo ui stuff here
 		auto winSize = CCDirector::get()->getWinSize(); // screen size
-		
+		/*
+		EXAMPLE
 		auto label = CCLabelBMFont::create("i am a text text", "bigFont.fnt");
 		label->setScale(0.5);
 		label->setID("TestText");
@@ -124,7 +125,18 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		SS->setID("Window Helper");
 		SS->setVisible(false);
         WinLayer->addChild(SS);
+		*/
 
+		WinLayer->setPosition(winSize.width - 271,5);
+		WinLayer->getChildByID("MEGAHACK_INFO")->setPosition(winSize.width -212, winSize.height-192);
+		WinLayer->getChildByID("Retry")->setPosition(winSize.width-469,winSize.height-206);
+		WinLayer->getChildByID("MenuButton")->setPosition(winSize.width-469,winSize.height-195);
+		WinLayer->getChildByID("EditButton")->setPosition(winSize.width-469,0);
+		WinLayer->getChildByID("LevelVerified_TextField")->setPosition(winSize.width-189,winSize.height -211);
+		WinLayer->getChildByID("Attempts-label")->setPosition(winSize.width-189,winSize.height -125);
+		WinLayer->getChildByID("Jump-label")->setPosition(winSize.width-189,winSize.height -149);
+		WinLayer->getChildByID("Time-label")->setPosition(winSize.width-189,winSize.height -173);
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
+		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
 };
