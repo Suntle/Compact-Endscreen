@@ -82,13 +82,13 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
     }
 	 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
         CCMENU1->setID("Buttons_Layer");
-		 if (auto CCMENUITEMS0 = getChildOfType<CCMenuItemSpriteExtra>(CCMENU1, 0)) {
+		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName(CCMENU1,"GJ_replayBtn_001.png")) {
 			CCMENUITEMS0->setID("Retry");
 		 }
-		  if (auto MenuButton = getChildOfType<CCMenuItemSpriteExtra>(CCMENU1, 1)) {
+		  if (auto MenuButton = getChildBySpriteFrameName(CCMENU1,"GJ_menuBtn_001.png")) {
 			MenuButton->setID("MenuButton");
 		 }
-		 if (auto EditButton = getChildOfType<CCMenuItemSpriteExtra>(CCMENU1, 2)) {
+		 if (auto EditButton = getChildBySpriteFrameName(CCMENU1,"GJ_editBtn_001.png")) {
 			EditButton->setID("EditButton");
 		 }
 		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
