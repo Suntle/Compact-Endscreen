@@ -160,7 +160,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			
 		}
 		auto textField = getChildOfType<TextArea>(WinLayer, 0);
-  	  		textField->setPosition(73 ,winSize.height -211);
+  	  		textField->setPosition(73, winSize.height -211 );
 			textField->setScale(0.5);
 		
 		if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
