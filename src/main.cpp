@@ -138,10 +138,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		*/
 		
 		DONOTCRASH = false;
-		WinLayer->getChildByID("Level-Complete")->setVisible(false);
-		WinLayer->getChildByID("Chain_Right")->setVisible(false);
-		WinLayer->getChildByID("Chain_Left")->setVisible(false);
-		WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
+		
 		auto Buttons = WinLayer->getChildByID("Buttons_Layer");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
@@ -153,12 +150,15 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 				}
 			}
 		}
-		
-		if (!DONOTCRASH) {
 			WinLayer->getChildByID("LevelVerified_TextField")->setPosition(73,winSize.height -211);
 			WinLayer->getChildByID("LevelVerified_TextField")->setScale(0.5);
 			WinLayer->getChildByID("Attempts-label")->setPosition(73,winSize.height -125);
 			WinLayer->getChildByID("Jump-label")->setPosition(73,winSize.height -149);
+		if (!DONOTCRASH) {
+			WinLayer->getChildByID("Level-Complete")->setVisible(false);
+			WinLayer->getChildByID("Chain_Right")->setVisible(false);
+			WinLayer->getChildByID("Chain_Left")->setVisible(false);
+			WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
 			WinLayer->getChildByID("Time-label")->setPosition(73,winSize.height -173);
 			Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
