@@ -137,7 +137,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		auto Buttons = getChildOfType<CCMenu>(WinLayer, 1);
 
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-			if(auto MEGAHACK_INFO = Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")
+			if(auto MEGAHACK_INFO = Buttons->getChildByID("absolllute.megahack/cheat-indicator-info"))
 			{
 			MEGAHACK_INFO->setPosition(-138, 120);
 			}
