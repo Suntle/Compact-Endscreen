@@ -10,7 +10,7 @@ using namespace geode::prelude;
 	Hooks to the EndLevel Layer
 */
 bool DONOTCRASH = false;
-using NodeIdTable = std::unordered_map<std::string, cocos2d::CCNode*>;
+int i = 0;
 /*
 Geode Hasn't got some Important Ui String names so i needed to do it
 */
@@ -134,7 +134,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		*/
 		
 		DONOTCRASH = false;
-		auto Buttons = getChildOfType<CCMenu>(WinLayer, 1)
+		auto Buttons = getChildOfType<CCMenu>(WinLayer, 1);
 
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if(auto MEGAHACK_INFO = Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")
@@ -166,7 +166,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         		gdlist->setPosition(-213,32);
     		}
-			int i = 0;
+		i = 0;
 		  for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
        			 if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
           		  if(std::string_view(bmFont->getString()).starts_with("Time:")) {
