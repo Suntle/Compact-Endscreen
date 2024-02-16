@@ -143,6 +143,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
 				DONOTCRASH = true;
+				Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328,-30);	
 			}
 			if (Buttons->getChildByID("MEGAHACK_INFO")) {
 				if (!DONOTCRASH) {
@@ -161,11 +162,11 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);	
 			WinLayer->getChildByID("Chain_Right")->setVisible(false);
 			WinLayer->getChildByID("Chain_Left")->setVisible(false);
-			WinLayer->getChildByID("Level-Complete")->setVisible(false);
-		
-	
-
-		
+			if (!DONOTCRASH) {
+				WinLayer->getChildByID("Level-Complete")->setVisible(false);
+			else {
+				WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
+			};	
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
 		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
