@@ -161,9 +161,8 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);	
 			WinLayer->getChildByID("Chain_Right")->setVisible(false);
 			WinLayer->getChildByID("Chain_Left")->setVisible(false);
-		if (!DONOTCRASH) {
 			WinLayer->getChildByID("Level-Complete")->setVisible(false);
-		}
+		
 	
 
 		
