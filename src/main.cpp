@@ -135,7 +135,8 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		
 		
 	
-		
+		/*
+  MAINCODE
 		this->setPosition(0,0);
 		WinLayer->getChildByID("Level-Complete")->setVisible(false);
 		WinLayer->getChildByID("Chain_Right")->setVisible(false);
@@ -158,6 +159,8 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		WinLayer->getChildByID("Attempts-label")->setPosition(73,winSize.height -125);
 		WinLayer->getChildByID("Jump-label")->setPosition(73,winSize.height -149);
 		WinLayer->getChildByID("Time-label")->setPosition(73,winSize.height -173);
+		*/
+
 		
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
 		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
