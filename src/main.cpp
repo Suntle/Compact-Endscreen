@@ -163,7 +163,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 				WinLayer->getChildByID("Level-Complete")->setVisible(false);
 			}
 			else {
-				WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
+				//WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
 			};	
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
 		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
