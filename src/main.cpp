@@ -42,7 +42,7 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 
 
 class $modify(endLayer,EndLevelLayer){
-static NodeIdTable SetupIDS(CCLayer* WinLayer) {
+static SetupIDS(CCLayer* WinLayer) {
         NodeIdTable nodeIds;
 
         nodeIds["WinLayer"] = WinLayer;
