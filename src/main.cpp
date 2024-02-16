@@ -92,12 +92,15 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			EditButton->setID("EditButton");
 		 }
 		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
-		  	if (auto MEGAHACK_INFO = getChildOfType<CCMenuItemSpriteExtra>(CCMENU1, 3)) {
-				MEGAHACK_INFO->setID("MEGAHACK_INFO");
-		 	}
-			if (auto MEGAHACK_ARROW = getChildOfType<CCMenuItemSpriteExtra>(CCMENU1, 4)) {
-				MEGAHACK_ARROW->setID("MEGAHACK_ARROW");
-		 	}
+		if(auto MEGAHACK_INFO = getChildBySpriteFrameName(CCMENU1, "GJ_infoIcon_001.png")) {
+        		MEGAHACK_INFO->setID("MEGAHACK_INFO");
+    		}
+		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName(CCMENU1, "GJ_arrow_02_001.png")) {
+        		MEGAHACK_ARROW->setID("MEGAHACK_ARROW");
+    		}
+		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName(CCMENU1, "GJ_practiceBtn_001.png")) {
+        		GJ_practiceBtn_001->setID("MEGAHACK_PRACTICEBTN");
+    		}
 		  };
     }
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
@@ -140,7 +143,12 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
 		auto Buttons = WinLayer->getChildByID("Buttons_Layer");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-		        Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
+			if Buttons->getChildByID("MEGAHACK_INFO") {
+		        	Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
+			}
+			if Buttons->getChildByID("MEGAHACK_PRACTICEBTN") {
+		        	Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328, 58);
+			}
 		}
 		Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
 		Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
