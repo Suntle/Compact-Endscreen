@@ -144,12 +144,13 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
 		auto Buttons = WinLayer->getChildByID("Buttons_Layer");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-			if (Buttons->getChildByID("MEGAHACK_INFO")) {
-		        	Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
-			}
 			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
-		        	Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328, 58);
 				DONOTCRASH = true;
+			}
+			if (Buttons->getChildByID("MEGAHACK_INFO")) {
+				if (!DONOTCRASH) {
+		        	Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
+				}
 			}
 		}
 		WinLayer->getChildByID("LevelVerified_TextField")->setPosition(73,winSize.height -211);
