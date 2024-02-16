@@ -159,10 +159,10 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
 			Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);	
-		if (!DONOTCRASH) {
-			WinLayer->getChildByID("Level-Complete")->setVisible(false);
 			WinLayer->getChildByID("Chain_Right")->setVisible(false);
 			WinLayer->getChildByID("Chain_Left")->setVisible(false);
+		if (!DONOTCRASH) {
+			WinLayer->getChildByID("Level-Complete")->setVisible(false);
 		}
 	
 
