@@ -114,7 +114,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
-		EndLevelLayer::SetupIDS(WinLayer);
+		endLayer::SetupIDS(WinLayer);
 		auto winSize = CCDirector::get()->getWinSize();
 		// add yo ui stuff here
 		 // screen size
@@ -134,12 +134,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		*/
 		
 		DONOTCRASH = false;
-		if (auto Buttons = getChildOfType<CCMenu>(WinLayer, 1)) {
-		
-		}
-		else {
-		
-		}
+		auto Buttons = getChildOfType<CCMenu>(WinLayer, 1)
 
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if(auto MEGAHACK_INFO = Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")
