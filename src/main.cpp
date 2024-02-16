@@ -147,7 +147,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		        	MEGAHACK_INFO->setPosition(-138, 120);
 			}
 			}
-			if(auto MEGAHACK_PRACTICEBTN = Buttons->getChildByID("absolllute.megahack/practice-replay-button")
+			if(auto MEGAHACK_PRACTICEBTN = Buttons->getChildByID("absolllute.megahack/practice-replay-button"))
 			{
 			DONOTCRASH = true;
 			MEGAHACK_PRACTICEBTN->setPosition(winSize.width-328,-66);	
@@ -167,7 +167,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         		gdlist->setPosition(-213,32);
     		}
 		i = 0;
-		  for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+		  for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
        			 if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
           		  if(std::string_view(bmFont->getString()).starts_with("Time:")) {
               		  bmFont->setPosition(73,winSize.height -173);
@@ -181,7 +181,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
             		    bmFont->setPosition(73,winSize.height -125);
 				   i+=1;
            		 }
-			if I > 2 {
+			if (i > 2) {
 			break;
 			}
         }
