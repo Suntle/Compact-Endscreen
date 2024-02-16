@@ -114,7 +114,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
-		auto nodeIds = SetupIDS(WinLayer);
+		EndLevelLayer::SetupIDS(WinLayer);
 		auto winSize = CCDirector::get()->getWinSize();
 		// add yo ui stuff here
 		 // screen size
@@ -138,7 +138,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		
 		}
 		else {
-			return false
+		
 		}
 
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
