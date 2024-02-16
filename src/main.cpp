@@ -127,7 +127,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         WinLayer->addChild(SS);
 		*/
 
-		WinLayer->setPosition(winSize.width - 271,5);
+		//WinLayer->setPosition(winSize.width - 271,5);
 		WinLayer->getChildByID("MEGAHACK_INFO")->setPosition(winSize.width -212, winSize.height-192);
 		WinLayer->getChildByID("Retry")->setPosition(winSize.width-469,winSize.height-206);
 		WinLayer->getChildByID("MenuButton")->setPosition(winSize.width-469,winSize.height-195);
