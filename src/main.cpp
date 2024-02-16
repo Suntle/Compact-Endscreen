@@ -143,10 +143,10 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
 		auto Buttons = WinLayer->getChildByID("Buttons_Layer");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-			if Buttons->getChildByID("MEGAHACK_INFO") {
+			if (Buttons->getChildByID("MEGAHACK_INFO")) {
 		        	Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
 			}
-			if Buttons->getChildByID("MEGAHACK_PRACTICEBTN") {
+			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
 		        	Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328, 58);
 			}
 		}
