@@ -156,13 +156,13 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			WinLayer->getChildByID("Jump-label")->setPosition(73,winSize.height -149);
 			WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
 			WinLayer->getChildByID("Time-label")->setPosition(73,winSize.height -173);
+			Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
+			Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
+			Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);	
 		if (!DONOTCRASH) {
 			WinLayer->getChildByID("Level-Complete")->setVisible(false);
 			WinLayer->getChildByID("Chain_Right")->setVisible(false);
 			WinLayer->getChildByID("Chain_Left")->setVisible(false);
-			Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
-			Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
-			Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);	
 		}
 	
 
