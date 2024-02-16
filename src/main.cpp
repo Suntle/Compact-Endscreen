@@ -40,6 +40,10 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 
 
 class $modify(endLayer,EndLevelLayer){
+static void onModify(auto & self)
+    {
+        self.setHookPriority("EndLevelLayer::init", 100000);
+    }
 	void SetupIDS(CCLayer* WinLayer) { // this functions setups names for suntle as he is less knowing of c++ code
 	WinLayer->setID("End-Level-UI");
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
