@@ -8,7 +8,7 @@ using namespace geode::prelude;
 /**
 	Hooks to the EndLevel Layer
 */
-
+bool DONOTCRASH = false;
 /*
 Geode Hasn't got some Important Ui String names so i needed to do it
 */
@@ -149,16 +149,21 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			}
 			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
 		        	Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328, 58);
+				DONOTCRASH = true;
 			}
 		}
-		Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
-		Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
-		Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);
 		WinLayer->getChildByID("LevelVerified_TextField")->setPosition(73,winSize.height -211);
 		WinLayer->getChildByID("LevelVerified_TextField")->setScale(0.5);
 		WinLayer->getChildByID("Attempts-label")->setPosition(73,winSize.height -125);
 		WinLayer->getChildByID("Jump-label")->setPosition(73,winSize.height -149);
 		WinLayer->getChildByID("Time-label")->setPosition(73,winSize.height -173);
+		if (DONOTCRASH) {
+			return true
+		}
+		Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
+		Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
+		Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);
+	
 
 		
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
