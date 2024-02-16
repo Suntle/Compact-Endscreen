@@ -137,7 +137,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         WinLayer->addChild(SS);
 		*/
 		
-		DONOTCRASH = false
+		DONOTCRASH = false;
 		WinLayer->getChildByID("Level-Complete")->setVisible(false);
 		WinLayer->getChildByID("Chain_Right")->setVisible(false);
 		WinLayer->getChildByID("Chain_Left")->setVisible(false);
