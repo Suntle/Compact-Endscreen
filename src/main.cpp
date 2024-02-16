@@ -159,10 +159,10 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			}
 			
 		}
-		if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
-  	  	textField->setPosition(73,winSize.height -211);
-		textField->setScale(0.5);
-		}
+		if (auto textField = getChildOfType<TextArea>(WinLayer, 0) ) {
+  	  		textField->setPosition(73,winSize.height -211);
+			textField->setScale(0.5);
+		};
 		if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         		gdlist->setPosition(-213,32);
     		}
@@ -170,7 +170,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		  for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
        			 if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
           		  if(std::string_view(bmFont->getString()).starts_with("Time:")) {
-              		  bmFont->setPosition(73,winSize.height -173);
+              		 	 bmFont->setPosition(73,winSize.height -173);
 				  i+=1;
            		 }
            		 if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
