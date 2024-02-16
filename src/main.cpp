@@ -142,7 +142,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("MEGAHACK_PRACTICEBTN")) {
 				DONOTCRASH = true;
-				Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328,-30);	
+				Buttons->getChildByID("MEGAHACK_PRACTICEBTN")->setPosition(winSize.width-328,-66);	
 			}
 			if (Buttons->getChildByID("MEGAHACK_INFO")) {
 		        	Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
