@@ -38,6 +38,7 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
     return nullptr;
 }
 
+
 class $modify(endLayer,EndLevelLayer){
 	void SetupIDS(CCLayer* WinLayer) { // this functions setups names for suntle as he is less knowing of c++ code
 	WinLayer->setID("End-Level-UI");
@@ -103,15 +104,17 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
   	  textField->setID("LevelVerified_TextField");
 	}
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
-        gdlist->setID("Background");
+        gdlist->setID("Background_Textures");
     }
+
 }
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
 		endLayer::SetupIDS(WinLayer);
+		auto winSize = CCDirector::get()->getWinSize();
 		// add yo ui stuff here
-		auto winSize = CCDirector::get()->getWinSize(); // screen size
+		 // screen size
 		/*
 		EXAMPLE
 		auto label = CCLabelBMFont::create("i am a text text", "bigFont.fnt");
@@ -126,16 +129,28 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		SS->setVisible(false);
         WinLayer->addChild(SS);
 		*/
-
-		//WinLayer->setPosition(winSize.width - 271,5);
-		WinLayer->getChildByID("MEGAHACK_INFO")->setPosition(winSize.width -212, winSize.height-192);
-		WinLayer->getChildByID("Retry")->setPosition(winSize.width-469,winSize.height-206);
-		WinLayer->getChildByID("MenuButton")->setPosition(winSize.width-469,winSize.height-195);
-		WinLayer->getChildByID("EditButton")->setPosition(winSize.width-469,0);
-		WinLayer->getChildByID("LevelVerified_TextField")->setPosition(winSize.width-189,winSize.height -211);
-		WinLayer->getChildByID("Attempts-label")->setPosition(winSize.width-189,winSize.height -125);
-		WinLayer->getChildByID("Jump-label")->setPosition(winSize.width-189,winSize.height -149);
-		WinLayer->getChildByID("Time-label")->setPosition(winSize.width-189,winSize.height -173);
+		
+		
+	
+		
+		this->setPosition(0,0);
+		WinLayer->getChildByID("Level-Complete")->setVisible(false);
+		WinLayer->getChildByID("Chain_Right")->setVisible(false);
+		WinLayer->getChildByID("Chain_Left")->setVisible(false);
+		WinLayer->getChildByID("Background_Textures")->setPosition(-213,32);
+		auto Buttons = WinLayer->getChildByID("Buttons_Layer");
+		if (Loader::get()->isModLoaded("absolllute.megahack")) {
+		        Buttons->getChildByID("MEGAHACK_INFO")->setPosition(-138, 120);
+		}
+		Buttons->getChildByID("Retry")->setPosition(winSize.width-328,winSize.height-206);
+		Buttons->getChildByID("MenuButton")->setPosition(winSize.width-328,-133);
+		Buttons->getChildByID("EditButton")->setPosition(winSize.width-328,-1);
+		WinLayer->getChildByID("LevelVerified_TextField")->setPosition(73,winSize.height -211);
+		WinLayer->getChildByID("LevelVerified_TextField")->setScale(0.5);
+		WinLayer->getChildByID("Attempts-label")->setPosition(73,winSize.height -125);
+		WinLayer->getChildByID("Jump-label")->setPosition(73,winSize.height -149);
+		WinLayer->getChildByID("Time-label")->setPosition(73,winSize.height -173);
+		
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
 		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
