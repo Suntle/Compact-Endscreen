@@ -10,6 +10,7 @@ using namespace geode::prelude;
 	Hooks to the EndLevel Layer
 */
 bool DONOTCRASH = false;
+using NodeIdTable = std::unordered_map<std::string, cocos2d::CCNode*>;
 /*
 Geode Hasn't got some Important Ui String names so i needed to do it
 */
@@ -132,7 +133,7 @@ static NodeIdTable SetupIDS(CCLayer* WinLayer) {
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
-		auto GetnodeIds = endLayer::SetupIDS(WinLayer);
+		auto nodeIds = SetupIDS(WinLayer);
 		auto winSize = CCDirector::get()->getWinSize();
 		// add yo ui stuff here
 		 // screen size
@@ -152,29 +153,29 @@ static NodeIdTable SetupIDS(CCLayer* WinLayer) {
 		*/
 		
 		DONOTCRASH = false;
-		auto Buttons = GetnodeIds["Buttons_Layer"];
+		auto Buttons = nodeIds["Buttons_Layer"];
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-			if (GetnodeIds["MEGAHACK_PRACTICEBTN"]) {
+			if (nodeIds["MEGAHACK_PRACTICEBTN"]) {
 				DONOTCRASH = true;
-				GetnodeIds["MEGAHACK_PRACTICEBTN"]->setPosition(winSize.width-328,-66);	
+				nodeIds["MEGAHACK_PRACTICEBTN"]->setPosition(winSize.width-328,-66);	
 			}
-			if (GetnodeIds["MEGAHACK_INFO"]) {
-		        	GetnodeIds["MEGAHACK_INFO"]->setPosition(-138, 120);
+			if (nodeIds["MEGAHACK_INFO"]) {
+		        	nodeIds["MEGAHACK_INFO"]->setPosition(-138, 120);
 			}
 		}
-			GetnodeIds["LevelVerified_TextField"]->setPosition(73,winSize.height -211);
-			GetnodeIds["LevelVerified_TextField"]->setScale(0.5);
-			GetnodeIds["Attempts-label"]->setPosition(73,winSize.height -125);
-			GetnodeIds["Jump-label"]->setPosition(73,winSize.height -149);
-			GetnodeIdsp["Background_Textures"]->setPosition(-213,32);
-			GetnodeIds["Time-label"]->setPosition(73,winSize.height -173);
-			GetnodeIds["Retry"]->setPosition(winSize.width-328,winSize.height-206);
-			GetnodeIds["MenuButton"]->setPosition(winSize.width-328,-133);
-			GetnodeIds["EditButton"]->setPosition(winSize.width-328,-1);	
-			GetnodeIds["Chain_Right"]->setVisible(false);
-			GetnodeIds["Chain_Left"]->setVisible(false);
+			nodeIds["LevelVerified_TextField"]->setPosition(73,winSize.height -211);
+			nodeIds["LevelVerified_TextField"]->setScale(0.5);
+			nodeIds["Attempts-label"]->setPosition(73,winSize.height -125);
+			nodeIds["Jump-label"]->setPosition(73,winSize.height -149);
+			nodeIds["Background_Textures"]->setPosition(-213,32);
+			nodeIds["Time-label"]->setPosition(73,winSize.height -173);
+			nodeIds["Retry"]->setPosition(winSize.width-328,winSize.height-206);
+			nodeIds["MenuButton"]->setPosition(winSize.width-328,-133);
+			nodeIds["EditButton"]->setPosition(winSize.width-328,-1);	
+			nodeIds["Chain_Right"]->setVisible(false);
+			nodeIds["Chain_Left"]->setVisible(false);
 			if (!DONOTCRASH) {
-				GetnodeIds["Level-Complete"]->setVisible(false);
+				nodeIds["Level-Complete"]->setVisible(false);
 			}
 			else {
 				//WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
