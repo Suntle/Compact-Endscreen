@@ -277,6 +277,7 @@ void showLayer(bool p0) {
 				}
 				if (randomnum == 9) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("¿Cuándo sales alguna vez afuera?");
+				WinLayer->getChildByID("end-text")->setScale(0.25);
 				}
 				
 			}
