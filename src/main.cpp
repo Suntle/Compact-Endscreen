@@ -277,7 +277,6 @@ void showLayer(bool p0) {
 				}
 				
 			}
-		CoinCount = 0;
 		if (CoinCount > 0) {
 			if (CoinCount == 3) {
 			WinLayer->getChildByID("coin-1-background")->setPosition(167,216);
