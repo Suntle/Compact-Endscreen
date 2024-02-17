@@ -219,7 +219,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 				Buttons->getChildByID("absolllute-megahack-practice-replay-button")->setPosition(winSize.width-328,-1);
 			} else {
 				Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
-				Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-100);
+				Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-290);
 			}
 
 			WinLayer->getChildByID("chain-right")->setVisible(false);
