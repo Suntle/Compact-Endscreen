@@ -13,7 +13,7 @@ int t = 0;
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
 */
 // This just Makes it so you can get the texture by Sprite and stuff 
-bool isSpriteFrameName(CCNode* node, const char* name) {
+bool isSpriteFrameName_1(CCNode* node, const char* name) {
     auto cache = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
     if (!cache) return false;
 
@@ -34,7 +34,7 @@ bool isSpriteFrameName(CCNode* node, const char* name) {
     }
     return false;
 }
-CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
+CCNode* getChildBySpriteFrameName_1(CCNode* parent, const char* name) {
     auto cache = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
     if (!cache) return nullptr;
 
@@ -67,10 +67,10 @@ static void onModify(auto & self)
     }
 	void SetupIDS(CCLayer* WinLayer) { 
 		t=0;
-		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
+		if(auto LevelComplete = getChildBySpriteFrameName_1(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("level-complete-text");
     		}
-	else if (auto practiceTxt = getChildBySpriteFrameName(WinLayer, "GJ_practiceComplete_001.png")) {
+	else if (auto practiceTxt = getChildBySpriteFrameName_1(WinLayer, "GJ_practiceComplete_001.png")) {
        		 practiceTxt->setID("practice-complete-text");
   	  }
 	 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
@@ -122,27 +122,27 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
     }
 	 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
         CCMENU1->setID("button-menu");
-		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName(CCMENU1,"GJ_replayBtn_001.png")) {
+		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName_1(CCMENU1,"GJ_replayBtn_001.png")) {
 			CCMENUITEMS0->setID("retry-button");
 		 }
-		  if (auto MenuButton = getChildBySpriteFrameName(CCMENU1,"GJ_menuBtn_001.png")) {
+		  if (auto MenuButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_menuBtn_001.png")) {
 			MenuButton->setID("exit-button");
 		 }
-		 if (auto EditButton = getChildBySpriteFrameName(CCMENU1,"GJ_editBtn_001.png")) {
+		 if (auto EditButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_editBtn_001.png")) {
 			EditButton->setID("edit-button");
 		 }
-		 if (auto leaderboardButton = getChildBySpriteFrameName(CCMENU1, "GJ_levelLeaderboardBtn_001.png")) {
+		 if (auto leaderboardButton = getChildBySpriteFrameName_1(CCMENU1, "GJ_levelLeaderboardBtn_001.png")) {
         		leaderboardButton->setID("leaderboard-button");
    		 }
 
 		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
-		if(auto MEGAHACK_INFO = getChildBySpriteFrameName(CCMENU1, "GJ_infoIcon_001.png")) {
+		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
         		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
     		}
-		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName(CCMENU1, "GJ_arrow_02_001.png")) {
+		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName_1(CCMENU1, "GJ_arrow_02_001.png")) {
         		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
     		}
-		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName(CCMENU1, "GJ_practiceBtn_001.png")) {
+		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName_1(CCMENU1, "GJ_practiceBtn_001.png")) {
         		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
     		}
 		  };
@@ -166,7 +166,7 @@ CoinCount = 0;
             "secretCoin_b_01_001.png",
             "secretCoin_2_b_01_001.png"
         }) {
-            if (isSpriteFrameName(child, framename)) {
+            if (isSpriteFrameName_1(child, framename)) {
                 child->setID(fmt::format("coin-{}-background", currentCoin));
                 coinPos.push_back(child->getPosition());
                 currentCoin += 1;
