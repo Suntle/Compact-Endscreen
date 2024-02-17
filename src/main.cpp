@@ -209,7 +209,7 @@ CoinCount = 0;
 		auto Buttons = WinLayer->getChildByID("button-menu");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
-				Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-66);	
+				Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-66);
 			}
 			if (Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")) {
 		        	Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")->setPosition(-138, 120);
@@ -278,8 +278,10 @@ CoinCount = 0;
 				}  
 		
 				if (!moved) {
-					Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
-					Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-348);
+					if (!Buttons->getChildByID("absolllute-megahack-practice-replay-button")) {
+						Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
+						Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-348);
+					}
 				}
 				
 			
