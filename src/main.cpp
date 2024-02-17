@@ -213,13 +213,9 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
 			if (WinLayer->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
-			}
-			else {  
-			if (WinLayer->getChildByID("leaderboard-button")) { 
+			} else if (WinLayer->getChildByID("leaderboard-button")) { 
 			Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
-			}
-				else {
-				if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
+			} else if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
 					Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-1);
 				}
 				else {
