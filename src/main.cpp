@@ -250,7 +250,7 @@ void showLayer(bool p0) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				randomnum = rand() % 8 + 1;
+				randomnum = rand() % 9 + 1;
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
@@ -274,6 +274,9 @@ void showLayer(bool p0) {
 				}
 				if (randomnum == 8) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("W");
+				}
+				if (randomnum == 9) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("¿Cuándo sales alguna vez afuera?");
 				}
 				
 			}
