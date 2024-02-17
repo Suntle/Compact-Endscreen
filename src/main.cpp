@@ -4,6 +4,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
+#include <cstdlib>
 using namespace geode::prelude;
 int randomnum = 0;
 int t = 0;
@@ -180,7 +181,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				randomnum = rand(1,2);
+				randomnum = rand() % 2 + 1
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
