@@ -5,7 +5,7 @@
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
 using namespace geode::prelude;
-int random = 0;
+int randomnum = 0;
 int t = 0;
 /*
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
@@ -180,11 +180,11 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				random = RandomHelper::random_int(1, 2);
-				if (random == 1) {
+				randomnum = rand(1,2);
+				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
-				if (random == 2) {
+				if (randomnum == 2) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("Take a Break");
 				}
 				
