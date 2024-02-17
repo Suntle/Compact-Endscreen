@@ -184,6 +184,30 @@ CoinCount = 0;
     }
 
 }
+void showLayer(bool p0) {
+ 	EndLevelLayer::showLayer(p0);
+	auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
+	for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+            if (auto star = getChildBySpriteFrameName_1(child, "GJ_bigStar_001.png")) {
+                child->setPosition(114.500,228);
+		child->setScale(0.8);
+            }
+            else if (auto moon = getChildBySpriteFrameName_1(child, "GJ_bigMoon_001.png")) {
+                child->setPosition(114.500,228);
+		child->setScale(0.8);
+            }
+            else if (auto orb = getChildBySpriteFrameName_1(child, "currencyOrbIcon_001.png")) {
+                child->setPosition(47.500,228);
+		child->setScale(0.8);
+            }
+            else if (auto diamond = getChildBySpriteFrameName_1(child, "GJ_bigDiamond_001.png")) {
+                child->setPosition(114.500,247);
+		child->setScale(0.8);
+            }
+        }
+    }
+
+  }
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
