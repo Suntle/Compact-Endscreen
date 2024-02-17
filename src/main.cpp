@@ -166,7 +166,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			WinLayer->getChildByID("chain-right")->setVisible(false);
 			WinLayer->getChildByID("chain-left")->setVisible(false);
 			if (!DONOTCRASH) {
-				if WinLayer->getChildByID("level-complete-text") {
+				if(WinLayer->getChildByID("level-complete-text")) {
 					WinLayer->getChildByID("level-complete-text")->setVisible(false);
 				}
 				else {
