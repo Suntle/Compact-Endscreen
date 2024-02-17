@@ -149,7 +149,6 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         WinLayer->addChild(SS);
 		*/
 		
-		DONOTCRASH = false;
 		auto Buttons = WinLayer->getChildByID("button-menu");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
