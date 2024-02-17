@@ -7,6 +7,7 @@
 #include <cstdlib>
 using namespace geode::prelude;
 int randomnum = 0;
+int CoinCount = 0;
 int t = 0;
 /*
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
@@ -158,6 +159,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         gdlist->setID("background");
     }
 int currentCoin = 1;
+CoinCount = 0;
     std::vector<CCPoint> coinPos;
     for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         for (auto framename : {
@@ -168,11 +170,12 @@ int currentCoin = 1;
                 child->setID(fmt::format("coin-{}-background", currentCoin));
                 coinPos.push_back(child->getPosition());
                 currentCoin += 1;
+		CoinCount += 1;
             }
         }
     }
 
-    for (auto child : CCArrayExt<CCNode*>(m_mainLayer->getChildren())) {
+    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         for (int i = 1; i < currentCoin; i++) {
             if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
                 child->setID(fmt::format("coin-{}-sprite", i));
@@ -251,7 +254,7 @@ int currentCoin = 1;
 				}
 				
 			}
-		// 165.500, 227 coins
+		// 165.500, 227 coins, 0.5 size
 			WinLayer->getChildByID("background")->setPosition(-213,32);
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
@@ -259,18 +262,20 @@ int currentCoin = 1;
 			if (WinLayer->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
 				moved=true;
-			} else {
+			}  
 				if (WinLayer->getChildByID("leaderboard-button")) { 
-					Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
-					moved=true;
-				}  
-				else {
-					if (Buttons->getChildByID("absolllute-megahack-practice-replay-button")) {
-				Buttons->getChildByID("absolllute-megahack-practice-replay-button")->setPosition(winSize.width-328,-1);
+					if (!moved) {
+						Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
 						moved=true;
-					}  
-				}
-			}
+					}
+				}  
+				
+					if (Buttons->getChildByID("absolllute-megahack-practice-replay-button")) {
+						if (!moved) {
+							Buttons->getChildByID("absolllute-megahack-practice-replay-button")->setPosition(winSize.width-328,-1);
+							moved=true;
+						}
+				}  
 		
 				if (!moved) {
 					Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
