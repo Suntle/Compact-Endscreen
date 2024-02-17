@@ -167,9 +167,13 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
 			WinLayer->getChildByID("background")->setPosition(-213,32);
-			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
+			if (WinLayer->getChildByID("retry-button")) { 	
+				Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
+			}
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
-			Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);	
+			if (WinLayer->getChildByID("edit-button")) { 	
+				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
+			}
 			WinLayer->getChildByID("chain-right")->setVisible(false);
 			WinLayer->getChildByID("chain-left")->setVisible(false);
 		
