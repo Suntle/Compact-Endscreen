@@ -5,10 +5,8 @@
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
 using namespace geode::prelude;
-/**
-	Hooks to the EndLevel Layer
-*/
-bool DONOTCRASH = false;
+
+
 /*
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
 */
@@ -161,8 +159,10 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		        	Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")->setPosition(-138, 120);
 			}
 		}
-			WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
-			WinLayer->getChildByID("complete-message")->setScale(0.5);
+			if (WinLayer->getChildByID("complete-message")) {  
+				WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
+				WinLayer->getChildByID("complete-message")->setScale(0.5);
+			}
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
 			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
