@@ -259,11 +259,11 @@ CoinCount = 0;
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
 			bool moved = false; 
-			if (WinLayer->getChildByID("edit-button")) { 	
+			if (Buttons->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
 				moved=true;
 			}  
-				if (WinLayer->getChildByID("leaderboard-button")) { 
+				if (Buttons->getChildByID("leaderboard-button")) { 
 					if (!moved) {
 						Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
 						moved=true;
