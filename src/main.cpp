@@ -156,10 +156,10 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		}
 			WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
 			WinLayer->getChildByID("complete-message")->setScale(0.5);
-			WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125);
-			WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149);
+			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
+			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
+			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
 			WinLayer->getChildByID("background")->setPosition(-213,32);
-			WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173);
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
 			Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);	
