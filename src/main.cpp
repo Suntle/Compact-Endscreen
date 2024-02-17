@@ -12,6 +12,27 @@ int t = 0;
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
 */
 // This just Makes it so you can get the texture by Sprite and stuff 
+bool isSpriteFrameName(CCNode* node, const char* name) {
+    auto cache = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
+    if (!cache) return false;
+
+    auto* texture = cache->getTexture();
+    auto rect = cache->getRect();
+
+    if (auto* spr = typeinfo_cast<CCSprite*>(node)) {
+        if (spr->getTexture() == texture && spr->getTextureRect() == rect) {
+            return true;
+        }
+    } else if (auto* btn = typeinfo_cast<CCMenuItemSprite*>(node)) {
+        auto* img = btn->getNormalImage();
+        if (auto* spr = typeinfo_cast<CCSprite*>(img)) {
+            if (spr->getTexture() == texture && spr->getTextureRect() == rect) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
     auto cache = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name);
     if (!cache) return nullptr;
@@ -136,6 +157,28 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         gdlist->setID("background");
     }
+int currentCoin = 1;
+    std::vector<CCPoint> coinPos;
+    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+        for (auto framename : {
+            "secretCoin_b_01_001.png",
+            "secretCoin_2_b_01_001.png"
+        }) {
+            if (isSpriteFrameName(child, framename)) {
+                child->setID(fmt::format("coin-{}-background", currentCoin));
+                coinPos.push_back(child->getPosition());
+                currentCoin += 1;
+            }
+        }
+    }
+
+    for (auto child : CCArrayExt<CCNode*>(m_mainLayer->getChildren())) {
+        for (int i = 1; i < currentCoin; i++) {
+            if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
+                child->setID(fmt::format("coin-{}-sprite", i));
+            }
+        }
+    }
 
 }
 	void customSetup() {
@@ -208,23 +251,34 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 				}
 				
 			}
+		// 165.500, 227 coins
 			WinLayer->getChildByID("background")->setPosition(-213,32);
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
+			bool moved = false; 
 			if (WinLayer->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
-			} else { 
-			if (WinLayer->getChildByID("leaderboard-button")) { 
-				Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
-			} else { 
-			if (Buttons->getChildByID("absolllute-megahack-practice-replay-button")) {
-				Buttons->getChildByID("absolllute-megahack-practice-replay-button")->setPosition(winSize.width-328,-1);
+				moved=true;
 			} else {
-				Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
-				Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-348);
+				if (WinLayer->getChildByID("leaderboard-button")) { 
+					Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
+					moved=true;
+				}  
+				else {
+					if (Buttons->getChildByID("absolllute-megahack-practice-replay-button")) {
+				Buttons->getChildByID("absolllute-megahack-practice-replay-button")->setPosition(winSize.width-328,-1);
+						moved=true;
+					}  
 				}
 			}
-		}
+		
+				if (!moved) {
+					Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
+					Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,winSize.height-348);
+				}
+				
+			
+		
 
 			WinLayer->getChildByID("chain-right")->setVisible(false);
 			WinLayer->getChildByID("chain-left")->setVisible(false);
@@ -238,6 +292,5 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			
 				
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
-		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
 };
