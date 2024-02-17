@@ -75,6 +75,14 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
             }
         }
     }
+for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+        if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
+            if(std::string_view(bmFont->getString()).starts_with("Points:")) {
+                bmFont->setID("points-label");
+                break;
+            }
+        }
+    }
 
 	if (auto CCSprite0 = getChildOfType<CCSprite>(WinLayer, 0)) {
         CCSprite0->setID("chain-left");
@@ -147,7 +155,6 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		auto Buttons = WinLayer->getChildByID("button-menu");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
 			if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
-				DONOTCRASH = true;
 				Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-66);	
 			}
 			if (Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")) {
@@ -158,6 +165,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			WinLayer->getChildByID("complete-message")->setScale(0.5);
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
 			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
+			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
 			WinLayer->getChildByID("background")->setPosition(-213,32);
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
@@ -165,18 +173,15 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);	
 			WinLayer->getChildByID("chain-right")->setVisible(false);
 			WinLayer->getChildByID("chain-left")->setVisible(false);
-			if (!DONOTCRASH) {
+		
 				if(WinLayer->getChildByID("level-complete-text")) {
 					WinLayer->getChildByID("level-complete-text")->setVisible(false);
 				}
 				else {
 					WinLayer->getChildByID("practice-complete-text")->setVisible(false);
 				}
-			}
-			else {
-				WinLayer->getChildByID("practice-complete-text")->setVisible(false);
-				//WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
-			};	
+			
+				
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
 		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
