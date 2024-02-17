@@ -241,6 +241,7 @@ void showLayer(bool p0) {
 				
 				WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
 				WinLayer->getChildByID("complete-message")->setScale(0.5);
+				WinLayer->getChildByID("complete-message")->setVisible(false);
 			}
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
 			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
@@ -276,6 +277,56 @@ void showLayer(bool p0) {
 				}
 				
 			}
+		if (CoinCount > 0) {
+			if (CoinCount == 3) {
+			WinLayer->getChildByID("coin-1-background")->setPosition(167,216);
+				WinLayer->getChildByID("coin-1-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-1-sprite")) { 
+					WinLayer->getChildByID("coin-1-sprite")->setPosition(167,216);
+					WinLayer->getChildByID("coin-1-sprite")->setScale(0.5);
+				}
+				WinLayer->getChildByID("coin-2-background")->setPosition(167,190);
+				WinLayer->getChildByID("coin-2-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-2-sprite")) { 
+					WinLayer->getChildByID("coin-2-sprite")->setPosition(167,190);
+					WinLayer->getChildByID("coin-2-sprite")->setScale(0.5);
+				}
+				WinLayer->getChildByID("coin-3-background")->setPosition(167,164);
+				WinLayer->getChildByID("coin-3-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-3-sprite")) { 
+					WinLayer->getChildByID("coin-3-sprite")->setPosition(167,164);
+					WinLayer->getChildByID("coin-3-sprite")->setScale(0.5);
+				}
+				// 167
+				// 216
+				// 190
+				// 164
+			}
+			if (CoinCount == 2) {
+				WinLayer->getChildByID("coin-1-background")->setPosition(167,190);
+				WinLayer->getChildByID("coin-1-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-1-sprite")) { 
+					WinLayer->getChildByID("coin-1-sprite")->setPosition(167,190);
+					WinLayer->getChildByID("coin-1-sprite")->setScale(0.5);
+				}
+				WinLayer->getChildByID("coin-2-background")->setPosition(167,164);
+				WinLayer->getChildByID("coin-2-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-2-sprite")) { 
+					WinLayer->getChildByID("coin-2-sprite")->setPosition(167,164);
+					WinLayer->getChildByID("coin-2-sprite")->setScale(0.5);
+				}
+			}
+			if (CoinCount == 1) {
+				WinLayer->getChildByID("coin-1-background")->setPosition(167,164);
+				WinLayer->getChildByID("coin-1-background")->setScale(0.5);
+				if (WinLayer->getChildByID("coin-1-sprite")) { 
+					WinLayer->getChildByID("coin-1-sprite")->setPosition(167,164);
+					WinLayer->getChildByID("coin-1-sprite")->setScale(0.5);
+				}
+			}
+			
+		}
+		// 26
 		// 165.500, 227 coins, 0.5 size
 			WinLayer->getChildByID("background")->setPosition(-213,32);
 			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
