@@ -181,12 +181,30 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				randomnum = rand() % 2 + 1;
+				randomnum = rand() % 8 + 1;
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
 				if (randomnum == 2) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("Take a Break");
+				}
+				if (randomnum == 3) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString(":0");
+				}
+				if (randomnum == 4) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("oh my dayz");
+				}
+				if (randomnum == 5) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("YAAAA");
+				}
+				if (randomnum == 6) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("abcdefghijklmnop");
+				}
+				if (randomnum == 7) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("123456789");
+				}
+				if (randomnum == 8) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("W");
 				}
 				
 			}
@@ -195,6 +213,20 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
 			if (WinLayer->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
+			}
+			else {  
+			if (WinLayer->getChildByID("leaderboard-button")) { 
+			Buttons->getChildByID("leaderboard-button")->setPosition(winSize.width-328,-1);
+			}
+				else {
+				if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
+					Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-1);
+				}
+				else {
+					Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-250);
+					Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-100);
+				}
+			     }
 			}
 			WinLayer->getChildByID("chain-right")->setVisible(false);
 			WinLayer->getChildByID("chain-left")->setVisible(false);
