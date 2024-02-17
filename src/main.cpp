@@ -48,7 +48,7 @@ static void onModify(auto & self)
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("level-complete-text");
     		}
-	else if (auto practiceTxt = getChildBySpriteFrameName(m_mainLayer, "GJ_practiceComplete_001.png")) {
+	else if (auto practiceTxt = getChildBySpriteFrameName(WinLayer, "GJ_practiceComplete_001.png")) {
        		 practiceTxt->setID("practice-complete-text");
   	  }
 	 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
