@@ -206,11 +206,6 @@ void showLayer(bool p0) {
             }
         }
     }
-	TodoReturn coinEnterFinishedO(cocos2d::CCObject* p0) {
-		p0->setScale(0.5);
-		p0->setPosition(167,190);
-		log::info(std::string p0->getPosition());
-	}
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
