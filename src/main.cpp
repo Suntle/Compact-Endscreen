@@ -4,8 +4,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
-#include <random>
-#include <iostream>
+#include <ccRandom.h>
 using namespace geode::prelude;
 int random = 0;
 int t = 0;
@@ -171,6 +170,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			}
 		}
 			if (WinLayer->getChildByID("complete-message")) {  
+				
 				WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
 				WinLayer->getChildByID("complete-message")->setScale(0.5);
 			}
@@ -181,10 +181,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				std::random_device dev;
-    				std::mt19937 rng(dev());
-   				std::uniform_int_distribution<std::mt19937::result_type> dist6(1,2); // distribution in range [1, 2]
-				random = dist(rng);
+				random = RandomHelper::random_int(1, 2);
 				if (random == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
