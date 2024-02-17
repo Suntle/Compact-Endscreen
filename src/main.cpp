@@ -206,8 +206,6 @@ void showLayer(bool p0) {
             }
         }
     }
-
-  }
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
