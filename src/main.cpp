@@ -4,7 +4,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
-#include <ccRandom.h>
 using namespace geode::prelude;
 int random = 0;
 int t = 0;
