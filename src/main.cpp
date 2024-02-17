@@ -1,7 +1,6 @@
 /**
 	Including the headers.
 */
-#include <unordered_map>
 #include <Geode/Geode.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
@@ -10,9 +9,8 @@ using namespace geode::prelude;
 	Hooks to the EndLevel Layer
 */
 bool DONOTCRASH = false;
-int i = 0;
 /*
-Geode Hasn't got some Important Ui String names so i needed to do it
+Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
 */
 // This just Makes it so you can get the texture by Sprite and stuff 
 CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
@@ -42,15 +40,21 @@ CCNode* getChildBySpriteFrameName(CCNode* parent, const char* name) {
 
 
 class $modify(endLayer,EndLevelLayer){
-void SetupIDS(CCLayer* WinLayer) { // this functions setups names for suntle as he is less knowing of c++ code
-	WinLayer->setID("End-Level-UI");
+static void onModify(auto & self)
+    {
+        self.setHookPriority("EndLevelLayer::init", -10000);
+    }
+	void SetupIDS(CCLayer* WinLayer) { 
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
-        		LevelComplete->setID("Level-Complete");
+        		LevelComplete->setID("level-complete-text");
     		}
+	else if (auto practiceTxt = getChildBySpriteFrameName(m_mainLayer, "GJ_practiceComplete_001.png")) {
+       		 practiceTxt->setID("practice-complete-text");
+  	  }
 	 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Time:")) {
-                bmFont->setID("Time-label");
+                bmFont->setID("time-label");
                 break;
             }
         }
@@ -58,7 +62,7 @@ void SetupIDS(CCLayer* WinLayer) { // this functions setups names for suntle as 
 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
-                bmFont->setID("Jump-label");
+                bmFont->setID("jump-label");
                 break;
             }
         }
@@ -66,51 +70,57 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Attempts:")) {
-                bmFont->setID("Attempts-label");
+                bmFont->setID("attempts-label");
                 break;
             }
         }
     }
 
 	if (auto CCSprite0 = getChildOfType<CCSprite>(WinLayer, 0)) {
-        CCSprite0->setID("Chain_Left");
+        CCSprite0->setID("chain-left");
     }
-
+	if (auto CCSprite1 = getChildOfType<CCSprite>(WinLayer, 1)) {
+        CCSprite1->setID("chain-right");
+    }
 
     if (auto CCMENU0 = getChildOfType<CCMenu>(WinLayer, 0)) {
-        CCMENU0->setID("Top_Menu");
+        CCMENU0->setID("hide-dropdown-menu");
     }
 	 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
-        CCMENU1->setID("Buttons_Layer");
+        CCMENU1->setID("button-menu");
 		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName(CCMENU1,"GJ_replayBtn_001.png")) {
-			CCMENUITEMS0->setID("Retry");
+			CCMENUITEMS0->setID("retry-button");
 		 }
 		  if (auto MenuButton = getChildBySpriteFrameName(CCMENU1,"GJ_menuBtn_001.png")) {
-			MenuButton->setID("MenuButton");
+			MenuButton->setID("exit-button");
 		 }
 		 if (auto EditButton = getChildBySpriteFrameName(CCMENU1,"GJ_editBtn_001.png")) {
-			EditButton->setID("EditButton");
+			EditButton->setID("edit-button");
 		 }
+		 if (auto leaderboardButton = getChildBySpriteFrameName(CCMENU1, "GJ_levelLeaderboardBtn_001.png")) {
+        		leaderboardButton->setID("leaderboard-button");
+   		 }
+
 		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
 		if(auto MEGAHACK_INFO = getChildBySpriteFrameName(CCMENU1, "GJ_infoIcon_001.png")) {
-        		MEGAHACK_INFO->setID("MEGAHACK_INFO");
+        		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
     		}
 		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName(CCMENU1, "GJ_arrow_02_001.png")) {
-        		MEGAHACK_ARROW->setID("MEGAHACK_ARROW");
+        		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
     		}
 		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName(CCMENU1, "GJ_practiceBtn_001.png")) {
-        		GJ_practiceBtn_001->setID("MEGAHACK_PRACTICEBTN");
+        		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
     		}
 		  };
     }
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
-  	  textField->setID("LevelVerified_TextField");
+  	  textField->setID("complete-message");
 	}
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
-        gdlist->setID("Background_Textures");
+        gdlist->setID("background");
     }
-}
 
+}
 	void customSetup() {
 		EndLevelLayer::customSetup();
 		auto WinLayer = static_cast<cocos2d::CCLayer*>(this->getChildren()->objectAtIndex(0)); // CCLAYER REAL
@@ -134,84 +144,40 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 		*/
 		
 		DONOTCRASH = false;
-		auto Buttons = getChildOfType<CCMenu>(WinLayer, 1);
-
+		auto Buttons = WinLayer->getChildByID("button-menu");
 		if (Loader::get()->isModLoaded("absolllute.megahack")) {
-			if(auto MEGAHACK_INFO = Buttons->getChildByID("absolllute.megahack/cheat-indicator-info"))
-			{
-			MEGAHACK_INFO->setPosition(-138, 120);
-			}
-			else
-			{
-			if(auto MEGAHACK_INFO = getChildBySpriteFrameName(Buttons, "GJ_infoIcon_001.png")) {
-		        	MEGAHACK_INFO->setPosition(-138, 120);
-			}
-			}
-			if(auto MEGAHACK_PRACTICEBTN = Buttons->getChildByID("absolllute.megahack/practice-replay-button"))
-			{
-			DONOTCRASH = true;
-			MEGAHACK_PRACTICEBTN->setPosition(winSize.width-328,-66);	
-			}
-			else {
-			if(auto MEGAHACK_PRACTICEBTN = getChildBySpriteFrameName(Buttons, "GJ_practiceBtn_001.png")) {
+			if (Buttons->getChildByID("absolllute.megahack/practice-replay-button")) {
 				DONOTCRASH = true;
-				MEGAHACK_PRACTICEBTN->setPosition(winSize.width-328,-66);	
+				Buttons->getChildByID("absolllute.megahack/practice-replay-button")->setPosition(winSize.width-328,-66);	
 			}
-			
-		}
-		auto textField = getChildOfType<TextArea>(WinLayer, 0);
-  	  		textField->setPosition(73, winSize.height -211 );
-			textField->setScale(0.5);
-		
-		if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
-        		gdlist->setPosition(-213,32);
-    		}
-		i = 0;
-		  for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
-       			 if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
-          		  if(std::string_view(bmFont->getString()).starts_with("Time:")) {
-              		 	 bmFont->setPosition(73,winSize.height -173);
-				  i+=1;
-           		 }
-           		 if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
-            		    bmFont->setPosition(73,winSize.height -149);
-				  i+=1;
-           		 }
-           		 if(std::string_view(bmFont->getString()).starts_with("Attempts:")) {
-            		    bmFont->setPosition(73,winSize.height -125);
-				   i+=1;
-           		 }
-			if (i > 2) {
-			break;
+			if (Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")) {
+		        	Buttons->getChildByID("absolllute.megahack/cheat-indicator-info")->setPosition(-138, 120);
 			}
-        }
-    }
-		
- 		if (auto Retry = getChildBySpriteFrameName(Buttons,"GJ_replayBtn_001.png")) {
- 			Retry->setPosition(winSize.width-328,winSize.height-206);
-		 }
-		  if (auto MenuButton = getChildBySpriteFrameName(Buttons,"GJ_menuBtn_001.png")) {
-			MenuButton->setPosition(winSize.width-328,-133);
-		 }
-		 if (auto EditButton = getChildBySpriteFrameName(Buttons,"GJ_editBtn_001.png")) {
-			EditButton->setPosition(winSize.width-328,-1);
-		 }
-		if (auto Chain_Right = getChildOfType<CCSprite>(WinLayer, 1)) {
-			Chain_Right->setVisible(false);
 		}
-			
-		if (auto Chain_Left = getChildOfType<CCSprite>(WinLayer, 0)) {
-			Chain_Left->setVisible(false);
-		}
+			WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
+			WinLayer->getChildByID("complete-message")->setScale(0.5);
+			WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125);
+			WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149);
+			WinLayer->getChildByID("background")->setPosition(-213,32);
+			WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173);
+			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
+			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
+			Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);	
+			WinLayer->getChildByID("chain-right")->setVisible(false);
+			WinLayer->getChildByID("chain-left")->setVisible(false);
 			if (!DONOTCRASH) {
-				if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
-				LevelComplete->setVisible(false);
+				if WinLayer->getChildByID("level-complete-text") {
+					WinLayer->getChildByID("level-complete-text")->setVisible(false);
+				}
+				else {
+					WinLayer->getChildByID("practice-complete-text")->setVisible(false);
 				}
 			}
 			else {
+				WinLayer->getChildByID("practice-complete-text")->setVisible(false);
 				//WinLayer->getChildByID("Level-Complete")->setPosition(winSize.width*20,winSize.height*2);	
 			};	
 		//WinLayer->setPosition(winSize.width-number, winSize.height)
-	}
+		// And… behold! My famous Shrek’s warty penis skin quesadillas with Pinocchio’s squeezed testicles and a side of Lord Farquaad’s cum
 	}
 };
