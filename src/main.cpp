@@ -4,9 +4,11 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
+#include <random>
+#include <iostream>
 using namespace geode::prelude;
-
-
+int random = 0;
+int t = 0;
 /*
 Geode as of writing this is adding node ids to the end level layer but 1, i did this before and just renaming the layers so when it comes out it doesn't break
 */
@@ -43,6 +45,7 @@ static void onModify(auto & self)
         self.setHookPriority("EndLevelLayer::init", -10000);
     }
 	void SetupIDS(CCLayer* WinLayer) { 
+		t=0;
 		if(auto LevelComplete = getChildBySpriteFrameName(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("level-complete-text");
     		}
@@ -53,6 +56,7 @@ static void onModify(auto & self)
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Time:")) {
                 bmFont->setID("time-label");
+		t+=1;
                 break;
             }
         }
@@ -61,6 +65,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
                 bmFont->setID("jump-label");
+		t+=1;
                 break;
             }
         }
@@ -69,6 +74,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Attempts:")) {
                 bmFont->setID("attempts-label");
+		t+=1;
                 break;
             }
         }
@@ -77,6 +83,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Points:")) {
                 bmFont->setID("points-label");
+		t+=1;
                 break;
             }
         }
@@ -122,6 +129,11 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
   	  textField->setID("complete-message");
 	}
+	else {
+	if (auto end = getChildOfType<CCLabelBMFont>(WinLayer, t)) {
+  	  		end->setID("end-text");
+	}
+	}
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         gdlist->setID("background");
     }
@@ -166,10 +178,23 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
-			WinLayer->getChildByID("background")->setPosition(-213,32);
-			if (WinLayer->getChildByID("retry-button")) { 	
-				Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
+			if (WinLayer->getChildByID("end-text")) { 	
+				WinLayer->getChildByID("end-text")->setPosition(73,95);
+				WinLayer->getChildByID("end-text")->setScale(0.425);
+				std::random_device dev;
+    				std::mt19937 rng(dev());
+   				std::uniform_int_distribution<std::mt19937::result_type> dist6(1,2); // distribution in range [1, 2]
+				random = dist(rng);
+				if (random == 1) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
+				}
+				if (random == 2) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("Take a Break");
+				}
+				
 			}
+			WinLayer->getChildByID("background")->setPosition(-213,32);
+			Buttons->getChildByID("retry-button")->setPosition(winSize.width-328,winSize.height-206);
 			Buttons->getChildByID("exit-button")->setPosition(winSize.width-328,-133);
 			if (WinLayer->getChildByID("edit-button")) { 	
 				Buttons->getChildByID("edit-button")->setPosition(winSize.width-328,-1);
