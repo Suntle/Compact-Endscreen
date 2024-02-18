@@ -256,7 +256,8 @@ void showLayer(bool p0) {
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				randomnum = rand() % 9 + 1;
+				randomnum = rand() % 1000 + 1;
+				WinLayer->getChildByID("end-text")->limitLabelWidth(0.425,0.425,0.1)
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
@@ -283,7 +284,9 @@ void showLayer(bool p0) {
 				}
 				if (randomnum == 9) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("¿Cuándo sales alguna vez afuera?");
-				WinLayer->getChildByID("end-text")->setScale(0.25);
+				}
+				if (randomnum == 10) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("Megahack Update When?");
 				}
 				
 			}
