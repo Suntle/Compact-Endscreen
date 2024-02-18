@@ -258,7 +258,7 @@ void showLayer(bool p0) {
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
 				randomnum = rand() % 1000 + 1;
-				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->limitLabelWidth(0.425,0.425,0.1);
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->limitLabelWidth(35,0.425,0.1);
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
