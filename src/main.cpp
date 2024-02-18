@@ -281,6 +281,13 @@ void showLayer(bool p0) {
 				}
 				
 			}
+		for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
+        		for (int i = 1; i < currentCoin; i++) {
+           		 if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
+              		  child->setID(fmt::format("coin-{}-sprite", i));
+          		  }
+        		}
+   			 }
 		if (CoinCount > 0) {
 			if (CoinCount == 3) {
 			WinLayer->getChildByID("coin-1-background")->setPosition(167,216);
