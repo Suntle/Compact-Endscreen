@@ -82,6 +82,25 @@ static void onModify(auto & self)
     		}
 		  };
     };
+int currentCoin = 1;
+	CoinCount = 0;
+    std::vector<CCPoint> coinPos;
+    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+        for (auto framename : {
+            "secretCoin_b_01_001.png",
+            "secretCoin_2_b_01_001.png"
+        }) {
+            if (isSpriteFrameName_1(child, framename)) {
+				if (!Loader::get()->isModLoaded("geode.node-ids")) {
+                child->setID(fmt::format("coin-{}-background", currentCoin));
+                coinPos.push_back(child->getPosition());
+				}
+                currentCoin += 1;
+		CoinCount += 1;
+            }
+        }
+    }
+
 		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
             return;
@@ -105,7 +124,7 @@ static void onModify(auto & self)
 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
-                bmFont->setID("jump-label");
+                bmFont->setID("jumps-label");
 		t+=1;
                 break;
             }
@@ -154,22 +173,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         gdlist->setID("background");
     }
-int currentCoin = 1;
-CoinCount = 0;
-    std::vector<CCPoint> coinPos;
-    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
-        for (auto framename : {
-            "secretCoin_b_01_001.png",
-            "secretCoin_2_b_01_001.png"
-        }) {
-            if (isSpriteFrameName_1(child, framename)) {
-                child->setID(fmt::format("coin-{}-background", currentCoin));
-                coinPos.push_back(child->getPosition());
-                currentCoin += 1;
-		CoinCount += 1;
-            }
-        }
-    }
+
 	for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
         	for (int i = 1; i < currentCoin; i++) {
            		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
@@ -246,7 +250,7 @@ void showLayer(bool p0) {
 				WinLayer->getChildByID("complete-message")->setVisible(false);
 			}
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
-			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
+			if (WinLayer->getChildByID("jumps-label")) { WinLayer->getChildByID("jumps-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
 			if (WinLayer->getChildByID("end-text")) { 	
