@@ -105,14 +105,14 @@ int coinstoplace = 0;
         	for (int i = 1; i < currentCoin; i++) {
            		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
 					  child->setVisible(false)
-					  coinstoplace =+1
+					  coinstoplace =+1;
           		  }
         		}
    		}
 		 for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         for (int i = 1; i < currentCoin; i++) {
             if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
-               coinstoplace=+1
+               coinstoplace=+1;
             }
         }
 		 };
