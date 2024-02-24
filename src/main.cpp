@@ -5,6 +5,7 @@
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/loader/Loader.hpp>
 #include <cstdlib>
+#include <Geode/cocos/label_nodes/CCLabelBMFont.h>
 using namespace geode::prelude;
 int randomnum = 0;
 int CoinCount = 0;
@@ -67,6 +68,44 @@ static void onModify(auto & self)
     }
 	void SetupIDS(CCLayer* WinLayer) { 
 		t=0;
+
+		 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
+        if (Loader::get()->isModLoaded("absolllute.megahack")) {
+		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
+        		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
+    		}
+		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName_1(CCMENU1, "GJ_arrow_02_001.png")) {
+        		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
+    		}
+		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName_1(CCMENU1, "GJ_practiceBtn_001.png")) {
+        		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
+    		}
+		  };
+    };
+int currentCoin = 1;
+int coinstoplace = 0;
+	CoinCount = 0;
+    std::vector<CCPoint> coinPos;
+    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+        for (auto framename : {
+            "secretCoin_b_01_001.png",
+            "secretCoin_2_b_01_001.png"
+        }) {
+            if (isSpriteFrameName_1(child, framename)) {
+				if (!Loader::get()->isModLoaded("geode.node-ids")) {
+                child->setID(fmt::format("coin-{}-background", currentCoin));
+                coinPos.push_back(child->getPosition());
+				}
+                currentCoin += 1;
+		CoinCount += 1;
+            }
+        }
+    }
+		
+		if (Loader::get()->isModLoaded("geode.node-ids")) {
+            return;
+        };
+
 		if(auto LevelComplete = getChildBySpriteFrameName_1(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("level-complete-text");
     		}
@@ -85,7 +124,7 @@ static void onModify(auto & self)
 for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         if (auto bmFont = typeinfo_cast<CCLabelBMFont*>(child)) {
             if(std::string_view(bmFont->getString()).starts_with("Jumps:")) {
-                bmFont->setID("jump-label");
+                bmFont->setID("jumps-label");
 		t+=1;
                 break;
             }
@@ -120,33 +159,9 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
     if (auto CCMENU0 = getChildOfType<CCMenu>(WinLayer, 0)) {
         CCMENU0->setID("hide-dropdown-menu");
     }
-	 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
-        CCMENU1->setID("button-menu");
-		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName_1(CCMENU1,"GJ_replayBtn_001.png")) {
-			CCMENUITEMS0->setID("retry-button");
-		 }
-		  if (auto MenuButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_menuBtn_001.png")) {
-			MenuButton->setID("exit-button");
-		 }
-		 if (auto EditButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_editBtn_001.png")) {
-			EditButton->setID("edit-button");
-		 }
-		 if (auto leaderboardButton = getChildBySpriteFrameName_1(CCMENU1, "GJ_levelLeaderboardBtn_001.png")) {
-        		leaderboardButton->setID("leaderboard-button");
-   		 }
+	
 
-		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
-		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
-        		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
-    		}
-		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName_1(CCMENU1, "GJ_arrow_02_001.png")) {
-        		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
-    		}
-		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName_1(CCMENU1, "GJ_practiceBtn_001.png")) {
-        		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
-    		}
-		  };
-    }
+		  
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
   	  textField->setID("complete-message");
 	}
@@ -158,23 +173,14 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
 	if (auto gdlist = getChildOfType<GJListLayer>(WinLayer, 0)) {
         gdlist->setID("background");
     }
-int currentCoin = 1;
-CoinCount = 0;
-    std::vector<CCPoint> coinPos;
-    for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
-        for (auto framename : {
-            "secretCoin_b_01_001.png",
-            "secretCoin_2_b_01_001.png"
-        }) {
-            if (isSpriteFrameName_1(child, framename)) {
-                child->setID(fmt::format("coin-{}-background", currentCoin));
-                coinPos.push_back(child->getPosition());
-                currentCoin += 1;
-		CoinCount += 1;
-            }
-        }
-    }
 
+	for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
+        	for (int i = 1; i < currentCoin; i++) {
+           		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
+              		  child->setID(fmt::format("coin-{}-sprite", i));
+          		  }
+        		}
+   		}
     for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         for (int i = 1; i < currentCoin; i++) {
             if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
@@ -241,16 +247,17 @@ void showLayer(bool p0) {
 				
 				WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
 				WinLayer->getChildByID("complete-message")->setScale(0.5);
-				WinLayer->getChildByID("complete-message")->setVisible(false);
+				WinLayer->getChildByID("complete-message")->setVisible(true);
 			}
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
-			if (WinLayer->getChildByID("jump-label")) { WinLayer->getChildByID("jump-label")->setPosition(73,winSize.height -149); }
+			if (WinLayer->getChildByID("jumps-label")) { WinLayer->getChildByID("jumps-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("points-label")) { WinLayer->getChildByID("points-label")->setPosition(73,winSize.height -149); }
 			if (WinLayer->getChildByID("time-label")) { 	WinLayer->getChildByID("time-label")->setPosition(73,winSize.height -173); }
 			if (WinLayer->getChildByID("end-text")) { 	
 				WinLayer->getChildByID("end-text")->setPosition(73,95);
 				WinLayer->getChildByID("end-text")->setScale(0.425);
-				randomnum = rand() % 8 + 1;
+				randomnum = rand() % 1000 + 1;
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->limitLabelWidth(35,0.425,0.1);
 				if (randomnum == 1) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("F in Chat");
 				}
@@ -275,8 +282,15 @@ void showLayer(bool p0) {
 				if (randomnum == 8) {
 				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("W");
 				}
+				if (randomnum == 9) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("¿Cuándo sales alguna vez afuera?");
+				}
+				if (randomnum == 10) {
+				static_cast<cocos2d::CCLabelBMFont*>(WinLayer->getChildByID("end-text"))->setString("Megahack Update When?");
+				}
 				
 			}
+		
 		if (CoinCount > 0) {
 			if (CoinCount == 3) {
 			WinLayer->getChildByID("coin-1-background")->setPosition(167,216);
