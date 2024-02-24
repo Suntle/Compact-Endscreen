@@ -100,7 +100,7 @@ int coinstoplace = 0;
 		CoinCount += 1;
             }
         }
-    }
+    };
 	for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
         	for (int i = 1; i < currentCoin; i++) {
            		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
@@ -115,7 +115,7 @@ int coinstoplace = 0;
                coinstoplace=+1
             }
         }
-		 }
+		 };
 
 		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
