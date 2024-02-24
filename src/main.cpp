@@ -68,6 +68,22 @@ static void onModify(auto & self)
     }
 	void SetupIDS(CCLayer* WinLayer) { 
 		t=0;
+		if (Loader::get()->isModLoaded("absolllute.megahack")) {
+		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
+        		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
+    		}
+		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName_1(CCMENU1, "GJ_arrow_02_001.png")) {
+        		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
+    		}
+		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName_1(CCMENU1, "GJ_practiceBtn_001.png")) {
+        		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
+    		}
+		  };
+    }
+		if (Loader::get()->isModLoaded("geode.node-ids")) {
+            return;
+        };
+
 		if(auto LevelComplete = getChildBySpriteFrameName_1(WinLayer, "GJ_levelComplete_001.png")) {
         		LevelComplete->setID("level-complete-text");
     		}
@@ -136,18 +152,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
         		leaderboardButton->setID("leaderboard-button");
    		 }
 
-		  if (Loader::get()->isModLoaded("absolllute.megahack")) {
-		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
-        		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
-    		}
-		if(auto MEGAHACK_ARROW = getChildBySpriteFrameName_1(CCMENU1, "GJ_arrow_02_001.png")) {
-        		MEGAHACK_ARROW->setID("absolllute.megahack/hide-endscreen");
-    		}
-		if(auto GJ_practiceBtn_001 = getChildBySpriteFrameName_1(CCMENU1, "GJ_practiceBtn_001.png")) {
-        		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
-    		}
-		  };
-    }
+		  
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {
   	  textField->setID("complete-message");
 	}
