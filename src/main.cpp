@@ -115,6 +115,7 @@ int coinstoplace = 0;
                coinstoplace=+1
             }
         }
+		 }
 
 		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
