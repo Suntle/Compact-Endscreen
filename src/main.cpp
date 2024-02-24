@@ -83,6 +83,7 @@ static void onModify(auto & self)
 		  };
     };
 int currentCoin = 1;
+int coinstoplace = 0;
 	CoinCount = 0;
     std::vector<CCPoint> coinPos;
     for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
@@ -100,6 +101,20 @@ int currentCoin = 1;
             }
         }
     }
+	for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
+        	for (int i = 1; i < currentCoin; i++) {
+           		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
+					  child->setVisible(false)
+					  coinstoplace =+1
+          		  }
+        		}
+   		}
+		 for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
+        for (int i = 1; i < currentCoin; i++) {
+            if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
+               coinstoplace=+1
+            }
+        }
 
 		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
