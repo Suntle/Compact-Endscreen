@@ -68,7 +68,9 @@ static void onModify(auto & self)
     }
 	void SetupIDS(CCLayer* WinLayer) { 
 		t=0;
-		if (Loader::get()->isModLoaded("absolllute.megahack")) {
+
+		 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
+        if (Loader::get()->isModLoaded("absolllute.megahack")) {
 		if(auto MEGAHACK_INFO = getChildBySpriteFrameName_1(CCMENU1, "GJ_infoIcon_001.png")) {
         		MEGAHACK_INFO->setID("absolllute.megahack/cheat-indicator-info");
     		}
@@ -79,7 +81,8 @@ static void onModify(auto & self)
         		GJ_practiceBtn_001->setID("absolllute.megahack/practice-replay-button");
     		}
 		  };
-    }
+    };
+		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
             return;
         };
@@ -137,20 +140,7 @@ for(auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
     if (auto CCMENU0 = getChildOfType<CCMenu>(WinLayer, 0)) {
         CCMENU0->setID("hide-dropdown-menu");
     }
-	 if (auto CCMENU1 = getChildOfType<CCMenu>(WinLayer, 1)) {
-        CCMENU1->setID("button-menu");
-		 if (auto CCMENUITEMS0 = getChildBySpriteFrameName_1(CCMENU1,"GJ_replayBtn_001.png")) {
-			CCMENUITEMS0->setID("retry-button");
-		 }
-		  if (auto MenuButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_menuBtn_001.png")) {
-			MenuButton->setID("exit-button");
-		 }
-		 if (auto EditButton = getChildBySpriteFrameName_1(CCMENU1,"GJ_editBtn_001.png")) {
-			EditButton->setID("edit-button");
-		 }
-		 if (auto leaderboardButton = getChildBySpriteFrameName_1(CCMENU1, "GJ_levelLeaderboardBtn_001.png")) {
-        		leaderboardButton->setID("leaderboard-button");
-   		 }
+	
 
 		  
 	if (auto textField = getChildOfType<TextArea>(WinLayer, 0)) {

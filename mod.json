@@ -1,5 +1,5 @@
 {
-	"geode": "2.0.0-beta.19",
+	"geode": "2.0.0-beta.20",
 	"gd": {
 		"win": "2.204",
 		"android": "2.205",
@@ -8,7 +8,7 @@
 	"resources": {
 		"sprites": ["resources/*.png"]
 	},
-	"version": "v0.1.0",
+	"version": "v0.1.1",
 	"id": "suntle.compactendscreen",
 	"name": "Compact Endscreen",
 	"developers": [
