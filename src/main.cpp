@@ -247,7 +247,7 @@ void showLayer(bool p0) {
 				
 				WinLayer->getChildByID("complete-message")->setPosition(73,winSize.height -211);
 				WinLayer->getChildByID("complete-message")->setScale(0.5);
-				WinLayer->getChildByID("complete-message")->setVisible(false);
+				WinLayer->getChildByID("complete-message")->setVisible(true);
 			}
 			if (WinLayer->getChildByID("attempts-label")) { WinLayer->getChildByID("attempts-label")->setPosition(73,winSize.height -125); }
 			if (WinLayer->getChildByID("jumps-label")) { WinLayer->getChildByID("jumps-label")->setPosition(73,winSize.height -149); }
