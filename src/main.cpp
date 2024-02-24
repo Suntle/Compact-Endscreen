@@ -100,24 +100,7 @@ int coinstoplace = 0;
 		CoinCount += 1;
             }
         }
-    };
-	for (auto child : CCArrayExt<CCNode*>(m_coinsToAnimate)) {
-        	for (int i = 1; i < currentCoin; i++) {
-           		if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
-					  child->setVisible(false);
-					  coinstoplace =+1;
-          		  }
-        		}
-   		}
-		 for (auto child : CCArrayExt<CCNode*>(WinLayer->getChildren())) {
-        for (int i = 1; i < currentCoin; i++) {
-            if (child->getID().empty() && child->getPosition() == coinPos[i - 1]) {
-               coinstoplace=+1;
-			   child->setVisible(false);
-            }
-        }
-		 };
-
+    }
 		
 		if (Loader::get()->isModLoaded("geode.node-ids")) {
             return;
